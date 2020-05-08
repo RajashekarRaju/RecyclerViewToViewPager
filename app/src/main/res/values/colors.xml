@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="colorPrimary">#ffffff</color>
-    <color name="colorSecondary">#9e9e9e</color>
     <color name="colorOnPrimary">#000000</color>
+
+    <color name="colorSecondary">#9e9e9e</color>
     <color name="colorOnSecondary">#000000</color>
-    <color name="colorPrimaryVariant">#ffffff</color>
+
+    <color name="colorSurface">#ffffff</color>
+    <color name="coloOnSurface">#000000</color>
+
+    <color name="colorBackground">#ffffff</color>
+    <color name="colorOnBackground">#000000</color>
+
+    <color name="colorPrimaryDark">#ffffff</color>
+    <color name="colorPrimaryVariant">#959595</color>
     <color name="colorSecondaryVariant">#cfcfcf</color>
-    <color name="colorPrimaryDark">#000000</color>
+
 </resources>
