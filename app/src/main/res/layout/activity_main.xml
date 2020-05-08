@@ -1,25 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".view.MainActivity">
 
-    <FrameLayout
-        android:id="@+id/main_root_view"
+    <fragment
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        tools:context=".view.MainActivity">
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/navigation_graph"
+        tools:ignore="FragmentTagUsage" />
 
-        <fragment
-            android:id="@+id/nav_host_fragment"
-            android:name="androidx.navigation.fragment.NavHostFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:defaultNavHost="true"
-            app:navGraph="@navigation/navigation_graph"
-            tools:ignore="FragmentTagUsage" />
-
-    </FrameLayout>
-
-</layout>
+</FrameLayout>
