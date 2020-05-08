@@ -20,20 +20,51 @@ import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
-class DetailViewPagerAdapter(val viewPager2: ViewPager2) :
+class DetailViewPagerAdapter(private val viewPager2: ViewPager2) :
     ListAdapter<Sports, DetailViewHolder>(DiffCallback) {
 
 
     class DetailViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val toolbar: Toolbar = itemView.findViewById(R.id.detail_toolbar)
-        val appBarLayout: AppBarLayout = itemView.findViewById(R.id.detail_appbar)
+        private val appBarLayout: AppBarLayout = itemView.findViewById(R.id.detail_appbar)
         val collapsingToolbar: CollapsingToolbarLayout =
             itemView.findViewById(R.id.detail_collapsing_toolbar)
-        val icon: ImageView = itemView.findViewById(R.id.detail_image_view)
-        val title: TextView = itemView.findViewById(R.id.title_detail_text_view)
-        val subtitle: TextView = itemView.findViewById(R.id.subtitle_detail_text_view)
-        val about: TextView = itemView.findViewById(R.id.about_detail_text_view)
+        private val icon: ImageView = itemView.findViewById(R.id.detail_image_view)
+        private val title: TextView = itemView.findViewById(R.id.title_detail_text_view)
+        private val subtitle: TextView = itemView.findViewById(R.id.subtitle_detail_text_view)
+        private val about: TextView = itemView.findViewById(R.id.about_detail_text_view)
         val fab: FloatingActionButton = itemView.findViewById(R.id.fab)
+
+        fun bind(sportsArgs: Sports) {
+            icon.setImageResource(sportsArgs.icon)
+            title.text = sportsArgs.title
+            subtitle.text = sportsArgs.subtitle
+            about.text = sportsArgs.about
+            appBarLayout.addOnOffsetChangedListener(appBarLayoutListener(sportsArgs))
+            toolbar.setNavigationOnClickListener { v ->
+                Navigation.findNavController(v).navigateUp()
+            }
+        }
+
+        private fun appBarLayoutListener(sportsArgs: Sports): AppBarLayout.OnOffsetChangedListener =
+            object : AppBarLayout.OnOffsetChangedListener {
+                var isShow = false
+                var scrollRange = -1
+                override fun onOffsetChanged(appBarLayout: AppBarLayout, verticalOffset: Int) {
+                    if (scrollRange == -1) {
+                        scrollRange = appBarLayout.totalScrollRange
+                    }
+                    if (scrollRange + verticalOffset == 0) {
+                        // Show title when completely collapsed.
+                        collapsingToolbar.title = sportsArgs.title
+                        isShow = true
+                    } else if (isShow) {
+                        // Hide title when collapsedToolBar is completely visible using empty string.
+                        collapsingToolbar.title = ""
+                        isShow = false
+                    }
+                }
+            }
     }
 
     override fun onCreateViewHolder(
@@ -51,35 +82,7 @@ class DetailViewPagerAdapter(val viewPager2: ViewPager2) :
 
     override fun onBindViewHolder(holder: DetailViewHolder, position: Int) {
         val sportsArgs: Sports = getItem(position)
-
-        holder.icon.setImageResource(sportsArgs.icon)
-        holder.title.text = sportsArgs.title
-        holder.subtitle.text = sportsArgs.subtitle
-        holder.about.text = sportsArgs.about
-
-        holder.toolbar.setNavigationOnClickListener { v ->
-            Navigation.findNavController(v).navigateUp()
-        }
-
-        holder.appBarLayout.addOnOffsetChangedListener(object :
-            AppBarLayout.OnOffsetChangedListener {
-            var isShow = false
-            var scrollRange = -1
-            override fun onOffsetChanged(appBarLayout: AppBarLayout, verticalOffset: Int) {
-                if (scrollRange == -1) {
-                    scrollRange = appBarLayout.totalScrollRange
-                }
-                if (scrollRange + verticalOffset == 0) {
-                    // Show title when completely collapsed.
-                    holder.collapsingToolbar.title = sportsArgs.title
-                    isShow = true
-                } else if (isShow) {
-                    // Hide title when collapsedToolBar is completely visible using empty string.
-                    holder.collapsingToolbar.title = ""
-                    isShow = false
-                }
-            }
-        })
+        holder.bind(sportsArgs)
 
         viewPager2.registerOnPageChangeCallback(object : OnPageChangeCallback() {
             override fun onPageScrollStateChanged(state: Int) {

@@ -20,9 +20,21 @@ class SportsAdapter(
     ) {
 
     class SportsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val iconImageView: ImageView = itemView.findViewById(R.id.social_item_image_view)
-        val titleTextView: TextView = itemView.findViewById(R.id.title_item_text_view)
-        val subtitleTextView: TextView = itemView.findViewById(R.id.subtitle_item_text_view)
+        private val iconImageView: ImageView = itemView.findViewById(R.id.social_item_image_view)
+        private val titleTextView: TextView = itemView.findViewById(R.id.title_item_text_view)
+        private val subtitleTextView: TextView = itemView.findViewById(R.id.subtitle_item_text_view)
+
+        fun bind(
+            sports: Sports,
+            onClickListener: OnClickListener
+        ) {
+            iconImageView.setImageResource(sports.icon)
+            titleTextView.text = sports.title
+            subtitleTextView.text = sports.subtitle
+            itemView.setOnClickListener{
+                onClickListener.onClick(sports)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SportsViewHolder {
@@ -37,13 +49,7 @@ class SportsAdapter(
 
     override fun onBindViewHolder(holder: SportsViewHolder, position: Int) {
         val sports: Sports = sportsList[position]
-        holder.iconImageView.setImageResource(sports.icon)
-        holder.titleTextView.text = sports.title
-        holder.subtitleTextView.text = sports.subtitle
-
-        holder.itemView.setOnClickListener{
-            onClickListener.onClick(sports)
-        }
+        holder.bind(sports, onClickListener)
     }
 
     override fun getItemCount() = sportsList.size
