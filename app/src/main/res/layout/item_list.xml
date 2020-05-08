@@ -15,13 +15,14 @@
             android:id="@+id/social_item_image_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:scaleType="fitCenter"
             android:padding="16dp"
+            android:scaleType="fitCenter"
             app:layout_constraintDimensionRatio="2:2"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="ContentDescription" />
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/ic_hockey" />
 
         <TextView
             android:id="@+id/title_item_text_view"
@@ -30,6 +31,7 @@
             android:layout_marginTop="16dp"
             android:gravity="center"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+            android:textColor="?attr/colorOnSurface"
             app:layout_constraintBottom_toTopOf="@id/subtitle_item_text_view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -42,6 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:gravity="center"
+            android:textColor="?attr/colorOnSurface"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

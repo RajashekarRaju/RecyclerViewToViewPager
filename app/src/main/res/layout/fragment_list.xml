@@ -17,9 +17,10 @@
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:title="@string/list_fragment_title"
             app:titleTextAppearance="@style/TextAppearance.Toolbar.Title"
-            app:title="List"
-            app:layout_scrollFlags="scroll|enterAlways" />
+            app:titleTextColor="?attr/colorOnPrimary" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -30,8 +31,8 @@
         android:clipToPadding="false"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-        app:spanCount="2"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:spanCount="2"
         tools:itemCount="6"
         tools:listitem="@layout/item_list" />
 
