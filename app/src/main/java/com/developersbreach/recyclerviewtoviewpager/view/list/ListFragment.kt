@@ -36,7 +36,7 @@ class ListFragment : Fragment() {
         recyclerView = view.findViewById(R.id.recycler_view)
 
         viewModel.sports.observe(viewLifecycleOwner, Observer { sportsList ->
-            adapter = SportsAdapter(sportsList, sportsItemListener())
+            adapter = SportsAdapter(sportsList, sportsItemListener)
             recyclerView.adapter = adapter
         })
 
@@ -48,15 +48,10 @@ class ListFragment : Fragment() {
         return view
     }
 
-    private fun sportsItemListener(): SportsAdapter.OnClickListener {
-        return SportsAdapter.OnClickListener { sports ->
-
-            val direction: NavDirections =
-                ListFragmentDirections.actionListFragmentToDetailFragment(
-                    sports
-                )
-            Navigation.findNavController(requireView()).navigate(direction)
-        }
+    private val sportsItemListener = SportsAdapter.OnClickListener { sports ->
+        val direction: NavDirections =
+            ListFragmentDirections.actionListFragmentToDetailFragment(sports)
+        Navigation.findNavController(requireView()).navigate(direction)
     }
 
 }
