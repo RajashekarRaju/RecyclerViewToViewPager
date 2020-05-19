@@ -33,6 +33,6 @@ val viewPagerAdapter = ViewPagerAdapter()
 viewPagerAdapter.submitList(yourItemsList)
 // Attach ViewPager2 with Adapter
 viewPager2.adapter = viewPagerAdapter
-// Get user clciked item position and set it to ViewPager2
+// Get user clicked item position and set it to ViewPager2
 viewPager2.setCurrentItem(selectedItem)
 ```
