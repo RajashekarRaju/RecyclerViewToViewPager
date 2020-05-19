@@ -39,6 +39,7 @@ class DetailFragment : Fragment() {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_detail, container, false)
         viewPager2 = view.findViewById(R.id.detail_view_pager)
+        viewPager2.setPageTransformer(ZoomOutPageTransformer())
         return view
     }
 
