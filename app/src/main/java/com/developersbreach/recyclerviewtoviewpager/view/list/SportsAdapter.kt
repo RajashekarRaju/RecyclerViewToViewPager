@@ -1,61 +1,39 @@
 package com.developersbreach.recyclerviewtoviewpager.view.list
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.developersbreach.recyclerviewtoviewpager.R
+import com.developersbreach.recyclerviewtoviewpager.databinding.ItemListBinding
 import com.developersbreach.recyclerviewtoviewpager.model.Sports
 
-class SportsAdapter(
-    private val sportsList: List<Sports>,
-    private val onClickListener: OnClickListener
-) :
-    ListAdapter<Sports, SportsAdapter.SportsViewHolder>(
-        DiffCallback
-    ) {
+class SportsAdapter :
+    ListAdapter<Sports, SportsAdapter.SportsViewHolder>(DiffCallback) {
 
-    class SportsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val iconImageView: ImageView = itemView.findViewById(R.id.social_item_image_view)
-        private val titleTextView: TextView = itemView.findViewById(R.id.title_item_text_view)
-        private val subtitleTextView: TextView = itemView.findViewById(R.id.subtitle_item_text_view)
+    class SportsViewHolder(
+        private val binding: ItemListBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(
-            sports: Sports,
-            onClickListener: OnClickListener
+            sports: Sports
         ) {
-            iconImageView.setImageResource(sports.icon)
-            titleTextView.text = sports.title
-            subtitleTextView.text = sports.subtitle
-            itemView.setOnClickListener{
-                onClickListener.onClick(sports)
-            }
+            binding.sport = sports
+            binding.executePendingBindings()
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SportsViewHolder {
         return SportsViewHolder(
-            LayoutInflater.from(parent.context).inflate(
-                R.layout.item_list,
-                parent,
-                false
+            ItemListBinding.inflate(
+                LayoutInflater.from(parent.context), parent, false
             )
         )
     }
 
     override fun onBindViewHolder(holder: SportsViewHolder, position: Int) {
-        val sports: Sports = sportsList[position]
-        holder.bind(sports, onClickListener)
-    }
-
-    override fun getItemCount() = sportsList.size
-
-    class OnClickListener(val clickListener: (sports: Sports) -> Unit) {
-        fun onClick(sports: Sports) = clickListener(sports)
+        val sports: Sports = getItem(position)
+        holder.bind(sports)
     }
 
     companion object DiffCallback : DiffUtil.ItemCallback<Sports>() {
