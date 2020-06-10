@@ -6,7 +6,13 @@ import com.developersbreach.recyclerviewtoviewpager.R
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Sports(val id: Int, val icon: Int, val title: String, val subtitle: String, val about: String) :
+data class Sports(
+    val id: Int,
+    val icon: Int,
+    val title: String,
+    val subtitle: String,
+    val about: String
+) :
     Parcelable {
 
     companion object {
