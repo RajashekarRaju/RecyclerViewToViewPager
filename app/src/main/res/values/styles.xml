@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorSurface">@color/colorSurface</item>
@@ -15,16 +15,6 @@
         <item name="colorOnSurface">@color/coloOnSurface</item>
         <item name="colorOnSecondary">@color/colorOnSecondary</item>
         <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
-    </style>
-
-    <style name="TextAppearance.Toolbar.Title" parent="TextAppearance.MaterialComponents.Headline4">
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColor">?attr/colorOnPrimary</item>
-    </style>
-
-    <style name="TextAppearance.Toolbar.DetailTitle" parent="TextAppearance.MaterialComponents.Headline5">
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColor">?attr/colorOnPrimary</item>
     </style>
 
 </resources>
