@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".view.MainActivity">
+    tools:context=".view.list.MainActivity">
 
-    <fragment
-        android:id="@+id/nav_host_fragment"
-        android:name="androidx.navigation.fragment.NavHostFragment"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:defaultNavHost="true"
-        app:navGraph="@navigation/navigation_graph"
-        tools:ignore="FragmentTagUsage" />
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:spanCount="2"
+        tools:itemCount="6"
+        tools:listitem="@layout/item_list" />
 
-</FrameLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
