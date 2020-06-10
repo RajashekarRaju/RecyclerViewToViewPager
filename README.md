@@ -36,3 +36,15 @@ viewPager2.adapter = viewPagerAdapter
 // Get user clicked item position and set it to ViewPager2
 viewPager2.setCurrentItem(selectedItem)
 ```
+
+## Implementation has been clearly explained in blog (https://developersbreach.com)
+## This repository has following branches which differs in features stated below.
+
+### Branch - Master
+Without DataBinding
+
+### Branch - DataBinding
+Applied to ViewModels, Layouts, Fragment, Two-Way Binding
+
+### Branch - SimpleExample
+No DataBiding, Removed Material ViewPager2, CustomViews Removed
