@@ -37,8 +37,8 @@ viewPager2.adapter = viewPagerAdapter
 viewPager2.setCurrentItem(selectedItem)
 ```
 
-## Implementation has been clearly explained in blog (https://developersbreach.com)
-## This repository has following branches which differs in features stated below.
+### Implementation has been clearly explained in blog (https://developersbreach.com)
+### This repository has following branches which differs in features stated below.
 
 ### Branch - Master
 Without DataBinding
