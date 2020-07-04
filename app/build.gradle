@@ -5,13 +5,13 @@ apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs"
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     buildToolsVersion "29.0.3"
 
     defaultConfig {
         applicationId "com.developersbreach.recyclerviewtoviewpager"
         minSdkVersion 21
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
@@ -41,8 +41,8 @@ dependencies {
     // Material Design Components
     implementation 'com.google.android.material:material:1.1.0'
     // Navigation Component
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.2.2'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.2.2'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.0'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.0'
     // Lifecycle extensions
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
     // ViewPager2
