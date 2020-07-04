@@ -13,18 +13,17 @@ class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
+
         supportActionBar!!.title = getString(R.string.detail_title)
 
         val sports: Sports = intent.getParcelableExtra("Intent to Detail Activity")!!
+        val sportsList: List<Sports> = Sports.sportsList(applicationContext)
 
         viewPager2 = findViewById(R.id.detail_view_pager)
         viewPager2.setPageTransformer(ZoomOutPageTransformer())
 
-        val sportsList: List<Sports> = Sports.sportsList(applicationContext)
-        val detailViewPagerAdapter = DetailViewPagerAdapter()
-        detailViewPagerAdapter.submitList(sportsList)
-
-        viewPager2.adapter = detailViewPagerAdapter
+        val viewPagerAdapter = DetailViewPagerAdapter(sportsList)
+        viewPager2.adapter = viewPagerAdapter
         viewPager2.setCurrentItem(sports.id, false)
     }
 }
