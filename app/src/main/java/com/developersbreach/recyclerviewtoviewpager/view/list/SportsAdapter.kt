@@ -5,8 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.developersbreach.recyclerviewtoviewpager.R
 import com.developersbreach.recyclerviewtoviewpager.model.Sports
@@ -15,23 +13,24 @@ class SportsAdapter(
     private val sportsList: List<Sports>,
     private val onClickListener: OnClickListener
 ) :
-    ListAdapter<Sports, SportsAdapter.SportsViewHolder>(
-        DiffCallback
-    ) {
+    RecyclerView.Adapter<SportsAdapter.SportsViewHolder>() {
 
-    class SportsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val iconImageView: ImageView = itemView.findViewById(R.id.social_item_image_view)
-        private val titleTextView: TextView = itemView.findViewById(R.id.title_item_text_view)
-        private val subtitleTextView: TextView = itemView.findViewById(R.id.subtitle_item_text_view)
+    class SportsViewHolder(
+        itemView: View
+    ) : RecyclerView.ViewHolder(itemView) {
+
+        private val banner: ImageView = itemView.findViewById(R.id.banner_item_image_view)
+        private val title: TextView = itemView.findViewById(R.id.title_item_text_view)
+        private val subtitle: TextView = itemView.findViewById(R.id.subtitle_item_text_view)
 
         fun bind(
             sports: Sports,
             onClickListener: OnClickListener
         ) {
-            iconImageView.setImageResource(sports.icon)
-            titleTextView.text = sports.title
-            subtitleTextView.text = sports.subtitle
-            itemView.setOnClickListener{
+            banner.setImageResource(sports.banner)
+            title.text = sports.title
+            subtitle.text = sports.subtitle
+            itemView.setOnClickListener {
                 onClickListener.onClick(sports)
             }
         }
@@ -56,15 +55,5 @@ class SportsAdapter(
 
     class OnClickListener(val clickListener: (sports: Sports) -> Unit) {
         fun onClick(sports: Sports) = clickListener(sports)
-    }
-
-    companion object DiffCallback : DiffUtil.ItemCallback<Sports>() {
-        override fun areItemsTheSame(oldItem: Sports, newItem: Sports): Boolean {
-            return oldItem === newItem
-        }
-
-        override fun areContentsTheSame(oldItem: Sports, newItem: Sports): Boolean {
-            return oldItem.title == newItem.title
-        }
     }
 }
