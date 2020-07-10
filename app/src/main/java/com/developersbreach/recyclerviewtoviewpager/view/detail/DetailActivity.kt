@@ -14,15 +14,13 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
-        supportActionBar!!.title = getString(R.string.detail_title)
-
         val sports: Sports = intent.getParcelableExtra("Intent to Detail Activity")!!
         val sportsList: List<Sports> = Sports.sportsList(applicationContext)
 
         viewPager2 = findViewById(R.id.detail_view_pager)
         viewPager2.setPageTransformer(ZoomOutPageTransformer())
 
-        val viewPagerAdapter = DetailViewPagerAdapter(sportsList)
+        val viewPagerAdapter = DetailViewPagerAdapter(sportsList, this, viewPager2)
         viewPager2.adapter = viewPagerAdapter
         viewPager2.setCurrentItem(sports.id, false)
     }
