@@ -15,8 +15,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        supportActionBar!!.title = getString(R.string.list_title)
-
         val sportsList: List<Sports> = Sports.sportsList(applicationContext)
         val recyclerView: RecyclerView = findViewById(R.id.recycler_view)
 
